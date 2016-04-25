@@ -17,18 +17,19 @@ public class AppTest extends FluentTest {
   @ClassRule
   public static ServerRule server = new ServerRule();
 
-  // @Test
-  // public void rootTest() {
-  //   goTo("http://localhost:4567/");
-  //   assertThat(pageSource()).contains("Side 1");
-  // }
-  // @Test
-  // public void notATriangleTest() {
-  //   goTo("http://localhost:4567/");
-  //   fill("#inputOne").with("3");
-  //   fill("#inputTwo").with("3");
-  //   fill("#inputThree").with("7");
-  //   submit(".button");
-  //   assertThat(pageSource()).contains("Not a triangle");
-  // }
+  @Test
+  public void rootTest() {
+    goTo("http://localhost:4567/");
+    assertThat(pageSource()).contains("Tell us the weight of the package:");
+  }
+  @Test
+  public void notATriangleTest() {
+    goTo("http://localhost:4567/");
+    fill("#inputWeight").with("1");
+    fill("#inputHeight").with("2");
+    fill("#inputWidth").with("2");
+    fill("#inputDepth").with("2");
+    submit(".button");
+    assertThat(pageSource()).contains("18");
+  }
 }
