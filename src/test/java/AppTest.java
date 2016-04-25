@@ -23,7 +23,7 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Tell us the weight of the package:");
   }
   @Test
-  public void notATriangleTest() {
+  public void basicCost() {
     goTo("http://localhost:4567/");
     fill("#inputWeight").with("1");
     fill("#inputHeight").with("2");
@@ -31,5 +31,16 @@ public class AppTest extends FluentTest {
     fill("#inputDepth").with("2");
     submit(".button");
     assertThat(pageSource()).contains("18");
+  }
+  @Test
+  public void costWithGiftWrap() {
+    goTo("http://localhost:4567/");
+    fill("#inputWeight").with("1");
+    fill("#inputHeight").with("2");
+    fill("#inputWidth").with("2");
+    fill("#inputDepth").with("2");
+    find("#giftWrap").click();
+    submit(".button");
+    assertThat(pageSource()).contains("19");
   }
 }

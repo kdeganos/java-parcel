@@ -20,6 +20,10 @@ public class App {
 
       Parcel parcel = new Parcel(Integer.parseInt(request.queryParams("inputWeight")), Integer.parseInt(request.queryParams("inputHeight")), Integer.parseInt(request.queryParams("inputWidth")), Integer.parseInt(request.queryParams("inputDepth")));
 
+      if (request.queryParams().size() > 4) {
+        parcel.giftWrapSurfaceArea();
+      }
+
       Integer outPut = parcel.costToShip();
       model.put("outPut", outPut);
       model.put("template", "templates/result.vtl");
