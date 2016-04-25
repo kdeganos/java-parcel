@@ -18,13 +18,13 @@ public class App {
     get("/result", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
 
-      Parcel parcel = new Parcel(Integer.parseInt(request.queryParams("inputWeight")), Integer.parseInt(request.queryParams("inputHeight")), Integer.parseInt(request.queryParams("inputWidth")), Integer.parseInt(request.queryParams("inputDepth")));
+      Parcel parcel = new Parcel(Double.parseDouble(request.queryParams("inputWeight")), Double.parseDouble(request.queryParams("inputHeight")), Double.parseDouble(request.queryParams("inputWidth")), Double.parseDouble(request.queryParams("inputDepth")));
 
       if (request.queryParams().size() > 4) {
         parcel.giftWrapSurfaceArea();
       }
 
-      Integer outPut = parcel.costToShip();
+      Double outPut = parcel.costToShip();
       model.put("outPut", outPut);
       model.put("template", "templates/result.vtl");
       return new ModelAndView(model, "templates/layout.vtl");

@@ -3,40 +3,42 @@ import java.util.Map;
 import java.util.HashMap;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.*;
 
 public class Parcel {
 
+  DecimalFormat decimal =  new DecimalFormat("0.00");
 
-  private Integer mParcelWeight;
-  private Integer mHeight;
-  private Integer mWidth;
-  private Integer mDepth;
-  private Integer mGiftWrapArea = 0;
+  private Double mParcelWeight;
+  private Double mHeight;
+  private Double mWidth;
+  private Double mDepth;
+  private Double mGiftWrapArea = 0.00;
 
 
-  public Parcel(Integer weight, Integer height, Integer width, Integer depth){
+  public Parcel(Double weight, Double height, Double width, Double depth){
     mParcelWeight = weight;
     mHeight = height;
     mWidth = width;
     mDepth = depth;
   }
 
-  public Integer weight() {
+  public Double weight() {
     return mParcelWeight;
   }
 
-  public Integer volume() {
+  public Double volume() {
     return mHeight * mWidth * mDepth;
   }
 
-  public Integer costToShip() {
-    Integer weightCost = mParcelWeight * 2;
-    Integer volumeCost = volume() * 2;
-    Integer wrapCost = 0;
+  public Double costToShip() {
+    Double weightCost = mParcelWeight * 2;
+    Double volumeCost = volume() * 2;
+    Double wrapCost = 0.0d;
     if (mGiftWrapArea > 0){
       wrapCost = mGiftWrapArea / 25 + 1;
     }
-    Integer totalCost = weightCost + volumeCost + wrapCost;
+    Double totalCost = Double.parseDouble(decimal.format(weightCost + volumeCost + wrapCost));
     return totalCost;
   }
 
